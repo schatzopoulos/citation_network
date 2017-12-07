@@ -1,13 +1,16 @@
 import luigi
+from utils import mkdir 
 
 class Crawler(luigi.Task):
-    crawler_path = luigi.Parameter(default='/tmp/')
+    directory = luigi.Parameter(default='/tmp/downloads')
 
     def requires(self):
         return []
 
     def output(self):
-        return luigi.LocalTarget(crawler_path)
+        return luigi.LocalTarget(self.directory)
 
     def run(self):
-        print >> "hello world"
+    	mkdir(self.directory)
+
+        print("hello world")
